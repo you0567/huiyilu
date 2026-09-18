@@ -1,0 +1,565 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+}
+
+body {
+  background: linear-gradient(160deg, #e8f1fb 0%, #d4e4f7 100%);
+  color: #2c3e50;
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#app {
+  width: 100%;
+  max-width: 700px;
+  background: #ffffff;
+  border-radius: 32px;
+  box-shadow: 0 20px 50px -12px rgba(70, 110, 160, 0.25), 0 6px 18px rgba(70, 110, 160, 0.08);
+  padding: 32px 24px;
+  border: 1px solid #dbe9f7;
+}
+
+/* ========== 标题 ========== */
+h1, h2 {
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #2c5282;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+  color: #2b6cb0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+h1::before, h1::after {
+  content: '📖';
+  font-size: 1.8rem;
+  opacity: 0.7;
+}
+
+/* ========== 首页引言卡片（蓝色，不动） ========== */
+.intro-card {
+  background: linear-gradient(135deg, #eaf3fc, #d8e8fa);
+  border-radius: 24px;
+  padding: 26px 22px;
+  margin-bottom: 24px;
+  border: 1px solid #c8ddf2;
+  text-align: center;
+  color: #2c5282;
+  box-shadow: 0 4px 14px rgba(80, 130, 190, 0.08);
+}
+
+.intro-card p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #2f5d8c;
+}
+
+.intro-card p:first-of-type {
+  margin-bottom: 10px;
+  font-style: italic;
+  color: #3a6ea5;
+}
+
+.intro-card .quote-icon {
+  font-size: 1.8rem;
+  opacity: 0.6;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ========== 搜索框 ========== */
+.search-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f0f6fc;
+  border-radius: 100px;
+  padding: 4px 4px 4px 20px;
+  border: 1px solid #c8ddf2;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.search-box:focus-within {
+  border-color: #6ba3e0;
+  box-shadow: 0 0 0 4px rgba(107, 163, 224, 0.18);
+}
+
+.search-box input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 14px 8px 14px 0;
+  font-size: 1rem;
+  outline: none;
+  color: #2c3e50;
+}
+
+.search-box input::placeholder {
+  color: #9ab5d4;
+}
+
+.search-box button {
+  background: #4a8fd4;
+  border: none;
+  border-radius: 100px;
+  padding: 12px 26px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 2px 8px rgba(74, 143, 212, 0.3);
+  white-space: nowrap;
+}
+
+.search-box button:hover { background: #3a7ac0; }
+.search-box button:active { transform: scale(0.96); }
+
+/* ========== 搜索结果列表 ========== */
+.results-container {
+  background: #f5faff;
+  border-radius: 24px;
+  padding: 8px;
+  border: 1px solid #dbe9f7;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.result-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-radius: 18px;
+  background: #ffffff;
+  margin-bottom: 6px;
+  border: 1px solid #e3eef9;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.result-item:hover {
+  background: #eaf3fc;
+  border-color: #b8d4ee;
+  transform: translateY(-1px);
+}
+
+.result-item .name {
+  font-weight: 500;
+  color: #2c5282;
+  font-size: 1.05rem;
+}
+
+.result-item .name::before {
+  content: '📘';
+  margin-right: 8px;
+  font-size: 1.1rem;
+  opacity: 0.85;
+}
+
+.result-item .arrow {
+  color: #8ab3da;
+  font-size: 1.2rem;
+  transition: transform 0.2s;
+}
+
+.result-item:hover .arrow {
+  transform: translateX(4px);
+  color: #4a8fd4;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 28px 16px;
+  color: #9ab5d4;
+  font-style: italic;
+  font-size: 0.95rem;
+}
+
+/* ========== 密码验证卡片 ========== */
+.password-card {
+  background: #f5faff;
+  border-radius: 28px;
+  padding: 30px 24px;
+  text-align: center;
+  border: 1px solid #dbe9f7;
+  box-shadow: 0 8px 20px rgba(80, 130, 190, 0.1);
+  margin-top: 8px;
+}
+
+.password-card h3 {
+  font-weight: 400;
+  font-size: 1.4rem;
+  color: #2c5282;
+  margin-bottom: 8px;
+}
+
+.password-card .lock-icon {
+  font-size: 3rem;
+  margin-bottom: 6px;
+}
+
+.password-card p {
+  color: #6b8db0;
+  font-size: 0.9rem;
+  margin-bottom: 22px;
+}
+
+.password-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #c8ddf2;
+  border-radius: 100px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-wrapper:focus-within {
+  border-color: #6ba3e0;
+  box-shadow: 0 0 0 4px rgba(107, 163, 224, 0.18);
+}
+
+.password-wrapper input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 16px 22px;
+  font-size: 1rem;
+  text-align: left;
+  letter-spacing: 2px;
+  outline: none;
+  color: #2c3e50;
+}
+
+.password-wrapper input::placeholder {
+  color: #b8cfe4;
+  letter-spacing: normal;
+}
+
+.eye-btn {
+  background: transparent;
+  border: none;
+  padding: 0 18px 0 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #6b8db0;
+  line-height: 1;
+  transition: opacity 0.2s;
+  user-select: none;
+}
+
+.eye-btn:hover { opacity: 0.7; }
+
+.password-input-group > button {
+  background: #4a8fd4;
+  border: none;
+  border-radius: 100px;
+  padding: 16px 22px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  box-shadow: 0 4px 12px rgba(74, 143, 212, 0.3);
+}
+
+.password-input-group > button:hover { background: #3a7ac0; }
+.password-input-group > button:active { transform: scale(0.98); }
+
+.back-link {
+  display: inline-block;
+  margin-top: 18px;
+  color: #6b8db0;
+  font-size: 0.9rem;
+  border-bottom: 1px dashed #b8d4ee;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.back-link:hover { color: #2c5282; }
+
+.error-message {
+  color: #d66a6a;
+  font-size: 0.9rem;
+  margin-top: 12px;
+  min-height: 22px;
+}
+
+/* ========== 回忆录相册视图 ========== */
+.memoir-view {
+  display: flex;
+  flex-direction: column;
+}
+
+.memoir-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 0 6px;
+}
+
+.memoir-header h2 {
+  font-size: 1.5rem;
+  color: #2b6cb0;
+}
+
+.memoir-header h2::before {
+  content: '📷';
+  margin-right: 8px;
+  font-size: 1.4rem;
+}
+
+.close-memoir {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  color: #8ab3da;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 40px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.close-memoir:hover {
+  background: #eaf3fc;
+  color: #4a8fd4;
+}
+
+.gallery-scroll {
+  max-height: 72vh;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  border-radius: 28px;
+  padding: 6px 6px 20px 6px;
+  background: #eaf3fc;
+  box-shadow: inset 0 0 0 1px #d8e8fa, 0 10px 24px -10px rgba(70, 110, 160, 0.2);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ========== 回忆录内部顶部的大蓝色框（可容纳更多字） ========== */
+.intro-card-inner {
+  scroll-snap-align: start;
+  background: linear-gradient(135deg, #d8e8fa, #c7def6);
+  border-radius: 28px;
+  padding: 42px 34px;
+  margin-bottom: 20px;
+  border: 1px solid #b8d4ee;
+  text-align: center;
+  color: #2c5282;
+  width: 100%;
+  max-width: 100%;
+  box-shadow: 0 6px 18px rgba(80, 130, 190, 0.08);
+}
+
+.intro-card-inner p {
+  font-size: 1.05rem;
+  line-height: 2;
+  color: #2f5d8c;
+  margin-bottom: 14px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.intro-card-inner p:first-of-type {
+  font-style: italic;
+  color: #3a6ea5;
+}
+
+.intro-card-inner .quote-icon {
+  font-size: 1.8rem;
+  opacity: 0.6;
+  margin-bottom: 12px;
+  display: block;
+  text-align: center;
+}
+
+/* ⭐ 落款右对齐（书信格式） */
+.intro-card-inner .letter-sign {
+  text-align: right;
+  font-style: italic;
+  color: #3a6ea5;
+  margin-top: 16px;
+  font-size: 0.95rem;
+  padding-right: 6px;
+}
+
+/* ========== 单条回忆卡片（文字 + 多图） ========== */
+.memory-card {
+  scroll-snap-align: start;
+  background: #ffffff;
+  border-radius: 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(70, 110, 160, 0.08);
+  border: 1px solid #dbe9f7;
+  overflow: hidden;
+}
+
+.memory-text {
+  padding: 22px 22px 16px 22px;
+}
+
+.memory-text .caption {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #2c3e50;
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.memory-text .date {
+  font-size: 0.8rem;
+  color: #8ab3da;
+}
+
+.memory-text .date::before {
+  content: '🗓️';
+  margin-right: 6px;
+  opacity: 0.8;
+}
+
+.memory-images {
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 0 22px 22px 22px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.memory-images::-webkit-scrollbar {
+  height: 5px;
+}
+
+.memory-images::-webkit-scrollbar-track {
+  background: #eaf3fc;
+  border-radius: 10px;
+  margin: 0 22px;
+}
+
+.memory-images::-webkit-scrollbar-thumb {
+  background: #b8d4ee;
+  border-radius: 10px;
+}
+
+.memory-images img {
+  height: 220px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 18px;
+  object-fit: cover;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  background: #eaf3fc;
+  border: 1px solid #dbe9f7;
+}
+
+.memory-images video {
+  height: 220px;
+  width: auto;
+  max-width: 100%;
+  border-radius: 18px;
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  background: #000;
+  border: 1px solid #dbe9f7;
+  object-fit: cover;
+}
+
+.memory-image-placeholder {
+  height: 200px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  color: #6b8db0;
+  background: #eaf3fc;
+  flex-shrink: 0;
+  width: 100%;
+  border: 1px dashed #b8d4ee;
+}
+
+.gallery-scroll::-webkit-scrollbar { width: 6px; }
+.gallery-scroll::-webkit-scrollbar-track {
+  background: #d8e8fa;
+  border-radius: 10px;
+  margin: 16px 0;
+}
+.gallery-scroll::-webkit-scrollbar-thumb {
+  background: #8ab3da;
+  border-radius: 10px;
+}
+
+.hidden { display: none !important; }
+
+@media (max-width: 480px) {
+  #app { padding: 24px 16px; border-radius: 26px; }
+  h1 { font-size: 1.7rem; }
+  .search-box button { padding: 12px 18px; font-size: 0.9rem; }
+  .memory-text { padding: 18px 18px 12px; }
+  .memory-images { padding: 0 18px 18px; }
+  .memory-images img { height: 180px; }
+  .intro-card p { font-size: 0.98rem; }
+  .intro-card-inner { padding: 32px 22px; }
+  .intro-card-inner p { font-size: 0.95rem; line-height: 1.9; }
+  .password-wrapper input { padding: 16px 14px; }
+  .eye-btn { padding: 0 14px 0 6px; }
+}
+
+/* 首页背景音乐（隐藏） */
+.home-audio {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 22px auto;
+  height: 42px;
+  border-radius: 100px;
+  outline: none;
+  background: #eaf3fc;
+  border: 1px solid #c8ddf2;
+}
+
+/* 回忆录专属音乐（隐藏） */
+.memoir-audio {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto 16px auto;
+  height: 42px;
+  border-radius: 100px;
+  outline: none;
+  background: #eaf3fc;
+  border: 1px solid #c8ddf2;
+}

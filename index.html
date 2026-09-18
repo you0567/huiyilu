@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>回忆录 · 时光密码</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- 搜索主视图 -->
+    <div id="searchView">
+      <h1>回忆录</h1>
+
+      <!-- 引言卡片 -->
+      <div class="intro-card">
+        <span class="quote-icon">✨</span>
+        <p>人是由爱的人拼凑成的马赛克。</p>
+        <p>相遇的意义就是被你改变的那部分的我，代替你，永远陪在我身边。</p>
+      </div>
+
+      <!-- 首页背景音乐（隐藏播放器） -->
+      <audio id="bgMusic" loop src="audio/bgm.mp3" class="home-audio" style="display:none;"></audio>
+
+      <!-- 搜索框 -->
+      <div class="search-section">
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="例如：西8 111、疯狂动物城..." autocomplete="off" />
+          <button id="searchBtn">搜索</button>
+        </div>
+      </div>
+
+      <div id="resultsContainer" class="results-container"></div>
+    </div>
+
+    <!-- 密码验证视图 -->
+    <div id="passwordView" class="hidden">
+      <div class="password-card">
+        <div class="lock-icon">🔐</div>
+        <h3 id="memoirTitleForPassword">回忆录</h3>
+        <p>此回忆录受密码保护，请输入访问密码</p>
+
+        <div class="password-input-group">
+          <div class="password-wrapper">
+            <input type="password" id="passwordInput" placeholder="" autocomplete="off" />
+            <button type="button" id="togglePasswordBtn" class="eye-btn" aria-label="显示密码">👁️</button>
+          </div>
+          <button id="submitPasswordBtn">解锁回忆</button>
+        </div>
+
+        <div id="passwordError" class="error-message"></div>
+        <span class="back-link" id="backToSearchFromPassword">← 返回搜索</span>
+      </div>
+    </div>
+
+    <!-- 回忆录相册视图 -->
+    <div id="memoirView" class="memoir-view hidden">
+      <div class="memoir-header">
+        <h2 id="memoirTitleDisplay">回忆录</h2>
+        <button class="close-memoir" id="closeMemoirBtn" title="返回搜索">✕</button>
+      </div>
+
+      <!-- ⭐ 每本回忆录的专属音乐（隐藏播放器，进来自动播放） -->
+      <audio id="memoirAudio" loop class="memoir-audio" style="display:none;"></audio>
+
+      <div id="galleryScroll" class="gallery-scroll"></div>
+    </div>
+  </div>
+
+  <script src="memoirs.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
